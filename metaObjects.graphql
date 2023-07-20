@@ -1,5 +1,5 @@
 type Metaobject {
-	field: MetaobjectField
+	field(key: String!): MetaobjectField
 	fields: [MetaobjectField!]!
 	handle: String!
 	id: ID!

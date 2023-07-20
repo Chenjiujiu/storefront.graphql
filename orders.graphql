@@ -1,7 +1,13 @@
 type Fulfillment {
 	trackingCompany: String
 	trackingInfo(first: Int): [FulfillmentTrackingInfo!]!
-	fulfillmentLineItems: FulfillmentLineItemConnection
+	fulfillmentLineItems(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): FulfillmentLineItemConnection
 }
 type FulfillmentLineItem {
 	lineItem: OrderLineItem!
@@ -48,8 +54,20 @@ type Order {
 	totalRefunded: MoneyV2!
 	totalShippingPrice: MoneyV2!
 	totalTax: MoneyV2
-	discountApplications: DiscountApplicationConnection
-	lineItems: LineItemConnection
+	discountApplications(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): DiscountApplicationConnection
+	lineItems(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): LineItemConnection
 }
 type OrderLineItem {
 	currentQuantity: Int!

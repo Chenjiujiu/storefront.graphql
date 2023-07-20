@@ -9,13 +9,28 @@ type Cart {
 	discountAllocations: [CartDiscountAllocation!]!
 	discountCodes: [CartDiscountCode!]!
 	id: ID!
-	metafield(namespace: String!, Key: String!): Metafield
+	metafield(
+		namespace: String!
+		Key: String!
+	): Metafield
 	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield!]!
 	note: String
 	totalQuantity: Int
 	updatedAt: DateTime
-	deliveryGroups: CartDeliveryGroupConnection
-	lines: LinesConnection
+	deliveryGroups(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): CartDeliveryGroupConnection
+	lines(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): LinesConnection
 }
 type CartAutomaticDiscountAllocation {
 	discountedAmount: MoneyV2!
@@ -66,7 +81,7 @@ type CartEstimatedCost {
 	totalTaxAmount: MoneyV2
 }
 type CartLine {
-	attribute: Attribute
+	attribute(key: String!): Attribute
 	attributes: [Attribute!]!
 	cost: CartLineCost!
 	discountAllocations: [CartDiscountAllocation!]!

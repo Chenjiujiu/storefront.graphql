@@ -19,7 +19,13 @@ type Article{
 	tags: [String!]!
 	title: String!
 	trackingParameters: String
-	comments: CommentsConnection
+	comments(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): CommentsConnection
 }
 type ArticleAuthor {
 	bio: String
@@ -41,6 +47,15 @@ type Blog {
 	onlineStoreUrl: URL
 	seo: SEO
 	title: String!
+	articles(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ArticleSortKeys
+		query: String
+	): ArticleConnection
 }
 type Comment {
 	author: CommentAuthor!

@@ -128,7 +128,12 @@ type MetaobjectField {
 	reference: MetafieldReference
 	type: String!
 	value: String
-	references: ReferenceConnection
+	references(
+		first: Int
+		after: String
+		last: Int
+		before: String
+	): ReferenceConnection
 }
 type MoneyV2 {
 	amount: Decimal!
@@ -182,17 +187,96 @@ type QueryRoot {
 	): [Product!]
 	publicApiVersions: [ApiVersion!]!
 	shop: Shop!
-	articles: ArticleConnection
-	blogs: BlogConnection
-	collections: CollectionConnection
-	locations: LocationConnection
-	metaobjects: MetaobjectConnection
-	pages: PageConnection
-	productTags: ProductTagConnection
-	productTypes: ProductTypeConnection
-	products: ProductConnection
-	search: SearchConnection
-	urlRedirects: UrlRedirectConnection
+	articles(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ArticleSortKeys
+		query: String
+	): ArticleConnection
+	blogs(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: BlogSortKeys
+		query: String
+	): BlogConnection
+	collections(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: CollectionSortKeys
+		query: String
+	): CollectionConnection
+	locations(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: LocationSortKeys
+		query: String
+	): LocationConnection
+	metaobjects(
+		type: String!
+		sortKey: String
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): MetaobjectConnection
+	pages(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: PageSortKeys
+		query: String
+	): PageConnection
+	productTags(
+		first: Int!
+	): ProductTagConnection
+	productTypes(
+		first: Int!
+	): ProductTypeConnection
+	products(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ProductSortKeys
+		query: String
+	): ProductConnection
+	search(
+		query: String
+		prefix: SearchPrefixQueryType
+		productFilters: [ProductFilter!]
+		reverse: Boolean
+		sortKey: SearchSortKeys
+		types: [SearchType!]
+		unavailableProducts: SearchUnavailableProductsType
+		first: Int
+		after: String
+		last: Int
+		before: String
+	): SearchConnection
+	urlRedirects(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		query: String
+	): UrlRedirectConnection
 }
 
 type SEO {

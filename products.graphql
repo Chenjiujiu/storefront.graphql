@@ -14,7 +14,15 @@ type Collection {
 	title: String!
 	trackingParameters: String
 	updatedAt: DateTime!
-	products: ProductConnection
+	products(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ProductCollectionSortKeys
+		filters: [ProductFilter!]
+	): ProductConnection
 }
 type ExternalVideo {
 	alt: String
