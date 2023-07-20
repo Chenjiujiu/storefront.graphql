@@ -136,3 +136,58 @@ type UserError{
 	field: [String!]
 	message: String!
 }
+
+#其他的Edge汇总
+type LinesEdge {
+	node: BaseCartLine!
+	cursor: String!
+}
+type DeliveryGroupsEdge {
+	node: DeliveryGroups!
+	cursor: String!
+}
+
+type articlesEdge {
+	cursor: String
+	node: Articles!
+}
+type blogsEdge {
+	cursor: String
+	node: Blogs!
+}
+type collectionsEdge {
+	cursor: String
+	node: Collections!
+}
+type locationsEdge {
+	cursor: String
+	node: Locations!
+}
+type metaobjectsEdge {
+	cursor: String
+	node: Metaobjects!
+}
+type pagesEdge {
+	cursor: String
+	node: Pages!
+}
+type productTagsEdge {
+	cursor: String
+	node: Producttags!
+}
+type productTypesEdge {
+	cursor: String
+	node: Producttypes!
+}
+type productsEdge {
+	cursor: String
+	node: Products!
+}
+type searchEdge {
+	cursor: String
+	node: Search!
+}
+type urlRedirectsEdge {
+	cursor: String
+	node: Urlredirects!
+}

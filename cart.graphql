@@ -65,24 +65,6 @@ type Cart {
 	deliveryGroups: DeliveryGroupsConnection
 	lines: LinesConnection
 }
-# Connections
-type LinesEdge {
-	node: BaseCartLine!
-	cursor: String!
-}
-type LinesConnection {
-	edges: [LinesEdge!]!
-	pageInfo: PageInfo!
-}
-type DeliveryGroupsEdge {
-	node: DeliveryGroups!
-	cursor: String!
-}
-type DeliveryGroupsConnection {
-	edges: [DeliveryGroupsEdge!]!
-	pageInfo: PageInfo!
-}
-
 type CartAutomaticDiscountAllocation {
 	discountedAmount: MoneyV2!
 	title: String!

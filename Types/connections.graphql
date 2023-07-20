@@ -102,3 +102,57 @@ type UrlRedirectConnection {
 	edges: [UrlRedirectEdge!]!
 	pageInfo: PageInfo!
 }
+# 其他的connection 汇总
+type LinesConnection {
+	edges: [LinesEdge!]!
+	pageInfo: PageInfo!
+}
+type DeliveryGroupsConnection {
+	edges: [DeliveryGroupsEdge!]!
+	pageInfo: PageInfo!
+}
+
+type ArticlesConnection{
+	edges: [articlesEdge!]!
+	pageInfo: PageInfo
+}
+type BlogsConnection{
+	edges: [blogsEdge!]!
+	pageInfo: PageInfo
+}
+type CollectionsConnection{
+	edges: [collectionsEdge!]!
+	pageInfo: PageInfo
+}
+type LocationsConnection{
+	edges: [locationsEdge!]!
+	pageInfo: PageInfo
+}
+type MetaobjectsConnection{
+	edges: [metaobjectsEdge!]!
+	pageInfo: PageInfo
+}
+type PagesConnection{
+	edges: [pagesEdge!]!
+	pageInfo: PageInfo
+}
+type ProductTagsConnection{
+	edges: [productTagsEdge!]!
+	pageInfo: PageInfo
+}
+type ProductTypesConnection{
+	edges: [productTypesEdge!]!
+	pageInfo: PageInfo
+}
+type ProductsConnection{
+	edges: [productsEdge!]!
+	pageInfo: PageInfo
+}
+type SearchConnection{
+	edges: [searchEdge!]!
+	pageInfo: PageInfo
+}
+type UrlRedirectsConnection{
+	edges: [urlRedirectsEdge!]!
+	pageInfo: PageInfo
+}

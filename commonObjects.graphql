@@ -1,36 +1,77 @@
-#import "./scalar.graphql"
+# Queries
+type Query {
+	localization: Localization
+	node(
+		id: ID!,
+	): Node
+	nodes(
+		ids: [ID!]!,
+	): Node
+	publicApiVersions: ApiVersion
+}
 
-#基础类型
-type Price {
-	amount: Decimal!
-	currencyCode: CurrencyCode
+# Mutations
+type Mutation {
+	cartMetafieldsSet(
+		metafields: [CartMetafieldsSetInput!]!
+	): CartMetafieldsSetPayload
 }
-type MoneyV2 {
-	amount: Decimal!
-	currencyCode: CurrencyCode!
+
+#Objects
+type ApiVersion {
+	displayName: String!
+	handle: String!
+	supported: Boolean!
 }
-type SEO {
-	description: String
-	title: String
+type Attribute {
+	key: String!
+	value: String
 }
-type PageInfo {
-	startCursor: String
-	endCursor: String
-	hasNextPage: Boolean!
-	hasPreviousPage: Boolean!
+type Brand {
+	colors: BrandColors!
+	coverImage: MediaImage
+	logo: MediaImage
+	shortDescription: String
+	slogan: String
+	squareLogo: MediaImage
+}
+type BrandColorGroup {
+	background: Color
+	foreground: Color
+}
+type BrandColors {
+	primary: [BrandColorGroup!]!
+	secondary: [BrandColorGroup!]!
+}
+type Country {
+	availableLanguages: [Language!]!
+	currency: Currency!
+	isoCode: CountryCode!
+	market: Market
+	name: String!
+	unitSystem: UnitSystem!
+}
+type Currency {
+	isoCode: CurrencyCode!
+	name: String!
+	symbol: String!
 }
 type Domain {
 	host: String!
 	sslEnabled: Boolean!
 	url: URL!
 }
-
-#图片
-enum ProductImageSortKeys {
-	CREATED_AT
-	ID
-	POSITION
-	RELEVANCE
+type Filter {
+	id: String!
+	label: String!
+	type: FilterType!
+	values: [FilterValue!]!
+}
+type FilterValue {
+	count: Int!
+	id: String!
+	input: JSON!
+	label: String!
 }
 type Image {
 	altText: String
@@ -39,71 +80,18 @@ type Image {
 	url: URL!
 	width: Int
 }
-type ImageEdge {
-	node: Image!
-	cursor: String!
+type Language {
+	endonymName: String!
+	isoCode: LanguageCode!
+	name: String!
 }
-type ImageConnection {
-	edges: [ImageEdge]
-	pageInfo: PageInfo!
+type Localization {
+	availableCountries: [Country!]!
+	availableLanguages: [Language!]!
+	country: Country!
+	language: Language!
+	market: Market!
 }
-
-#媒体
-enum ProductMediaSortKeys {
-	ID
-	POSITION
-	RELEVANCE
-}
-enum MediaContentType {
-	EXTERNAL_VIDEO
-	IMAGE
-	MODEL_3D
-	VIDEO
-}
-type MediaPresentation {
-	esJson: Json
-	id: ID!
-}
-type Media {
-	alt: String
-	mediaContentType: MediaContentType!
-	presentation: MediaPresentation
-	previewImage: Image
-}
-type MediaImage {
-	alt: String
-	id: ID!
-	image: Image
-	mediaContentType: MediaContentType!
-	presentation: MediaPresentation
-	previewImage: Image
-}
-type MediaEdge {
-	node: Media!
-	cursor: String!
-}
-type MediaConnection {
-	edges: [MediaEdge]
-	pageInfo: PageInfo!
-}
-
-# 元字段
-union MetafieldParentResource = Article | Blog | Cart | Collection | Customer | Location | Market | Order | Page | Product | ProductVariant | Shop
-union MetafieldReference = Collection | GenericFile | MediaImage | Metaobject | Page | Product | ProductVariant | Video
-type Metafield {
-	createdAt: DateTime!
-	description: String
-	id: ID!
-	key: String!
-	namespace: String!
-	parentResource: MetafieldParentResource!
-	reference: MetafieldReference
-	type: String!
-	updatedAt: DateTime
-	value: String!
-}
-
-#邮件地址
 type MailingAddress {
 	address1: String
 	address2: String
@@ -123,4 +111,72 @@ type MailingAddress {
 	province: String
 	provinceCode: String
 	zip: String
+}
+type Market {
+	handle: String!
+	id: ID!
+	metafield: Metafield
+	metafields: [Metafield]!
+}
+type Metafield {
+	createdAt: DateTime!
+	description: String
+	id: ID!
+	key: String!
+	namespace: String!
+	parentResource: MetafieldParentResource!
+	reference: MetafieldReference
+	type: String!
+	updatedAt: DateTime
+	value: String!
+}
+type MetaobjectField {
+	key: String!
+	reference: MetafieldReference
+	type: String!
+	value: String
+}
+type MoneyV2 {
+	amount: Decimal!
+	currencyCode: CurrencyCode!
+}
+type PageInfo {
+	startCursor: String
+	endCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+type QueryRoot {
+	article: Article
+	blog: Blog
+	cart: Cart
+	collection: Collection
+	customer: Customer
+	localization: Localization!
+	menu: Menu
+	metaobject: Metaobject
+	node: Node
+	nodes: [Node]!
+	page: Page
+	predictiveSearch: PredictiveSearchResult
+	product: Product
+	productRecommendations: [Product!]
+	publicApiVersions: [ApiVersion!]!
+	shop: Shop!
+	articles: ArticlesConnection
+	blogs: BlogsConnection
+	collections: CollectionsConnection
+	locations: LocationsConnection
+	metaobjects: MetaobjectsConnection
+	pages: PagesConnection
+	productTags: ProductTagsConnection
+	productTypes: ProductTypesConnection
+	products: ProductsConnection
+	search: SearchConnection
+	urlRedirects: UrlRedirectsConnection
+}
+
+type SEO {
+	description: String
+	title: String
 }
