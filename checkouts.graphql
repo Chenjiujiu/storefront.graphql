@@ -1,0 +1,257 @@
+# Queries
+type Query {
+	locations(
+		after: String
+		before: String
+		first: Int
+		last: Int
+		near: GeoCoordinateInput
+		reverse: Boolean
+		sortKey: LocationSortKeys
+	): LocationConnection
+}
+
+# Mutations
+type Mutation {
+	CheckoutAttributesUpdateV2Input(
+		checkoutId: ID!
+		input: CheckoutAttributesUpdateV2Input!
+	): CheckoutAttributesUpdateV2Payload
+	checkoutCompleteFree(
+		checkoutId: ID!
+	): CheckoutCompleteFreePayload
+	checkoutCompleteWithCreditCardV2(
+		checkoutId: ID!
+		payment: CreditCardPaymentInputV2!
+	): CheckoutCompleteWithCreditCardV2Payload
+	checkoutCompleteWithTokenizedPaymentV3(
+		checkoutId: ID!
+		payment: TokenizedPaymentInputV3!
+	): CheckoutCompleteWithTokenizedPaymentV3Payload
+	checkoutDiscountCodeApplyV2(
+		checkoutId: ID!
+		discountCode: String!
+	): CheckoutDiscountCodeApplyV2Payload
+	checkoutDiscountCodeRemove(
+		checkoutId: ID!
+	): CheckoutDiscountCodeRemovePayload
+	checkoutEmailUpdateV2(
+		checkoutId: ID!
+		email: String
+	): CheckoutEmailUpdateV2Payload
+	checkoutGiftCardRemoveV2(
+		appliedGiftCardId: ID!
+		checkoutId: ID!
+	): CheckoutGiftCardRemoveV2Payload
+	checkoutGiftCardsAppend(
+		checkoutId: ID!
+		giftCardCodes: [String!]!
+	): CheckoutGiftCardsAppendPayload
+	checkoutLineItemsAdd(
+		checkoutId: ID!
+		lineItems: [CheckoutLineItemInput!]!
+	): CheckoutLineItemsAddPayload
+	checkoutLineItemsRemove(
+		checkoutId: ID!
+		lineItemIds: [ID!]!
+	): CheckoutLineItemsRemovePayload
+	checkoutLineItemsReplace(
+		checkoutId: ID!
+		lineItems: [CheckoutLineItemInput!]!
+	): CheckoutLineItemsReplacePayload
+	checkoutLineItemsUpdate(
+		checkoutId: ID!
+		lineItems: [CheckoutLineItemUpdateInput!]!
+	): CheckoutLineItemsUpdatePayload
+	checkoutShippingAddressUpdateV2(
+		checkoutId: ID!
+		shippingAddress: MailingAddressInput!
+	): CheckoutShippingAddressUpdateV2Payload
+	checkoutShippingLineUpdate(
+		checkoutId: ID!
+		shippingRateHandle: String!
+	): CheckoutShippingLineUpdatePayload
+
+
+
+
+}
+
+# Objects
+type AppliedGiftCard {
+	amountUsed: MoneyV2!
+	balance: MoneyV2!
+	id: ID!
+	lastCharacters: String!
+	presentmentAmountUsed: MoneyV2!
+}
+type AutomaticDiscountApplication {
+	allocationMethod: DiscountApplicationAllocationMethod!
+	targetSelection: DiscountApplicationTargetSelection!
+	targetType: DiscountApplicationTargetType!
+	title: String!
+	value: PricingValue!
+}
+type AvailableShippingRates {
+	ready: Boolean!
+	shippingRates: [ShippingRate!]
+}
+type CartCost {
+	checkoutChargeAmount: MoneyV2!
+	subtotalAmount: MoneyV2!
+	subtotalAmountEstimated: Boolean!
+	totalAmount: MoneyV2!
+	totalAmountEstimated: Boolean!
+	totalDutyAmount: MoneyV2
+	totalDutyAmountEstimated: Boolean!
+	totalTaxAmount: MoneyV2
+	totalTaxAmountEstimated: Boolean!
+}
+type CartCustomDiscountAllocation {
+	discountedAmount: MoneyV2!
+	title: String!
+}
+type CartLineCost {
+	amountPerQuantity: MoneyV2!
+	compareAtAmountPerQuantity: MoneyV2
+	subtotalAmount: MoneyV2!
+	totalAmount: MoneyV2!
+}
+type Checkout {
+	appliedGiftCards: [AppliedGiftCard!]!
+	availableShippingRates: AvailableShippingRates
+	buyerIdentity: CheckoutBuyerIdentity!
+	completedAt: DateTime
+	createdAt: DateTime!
+	currencyCode: CurrencyCode!
+	customAttributes: [Attribute!]!
+	email: String
+	id: ID!
+	lineItemsSubtotalPrice: MoneyV2!
+	note: String
+	order: Order
+	orderStatusUrl: URL
+	paymentDue: MoneyV2!
+	ready: Boolean!
+	requiresShipping: Boolean!
+	shippingAddress: MailingAddress
+	shippingDiscountAllocations: [DiscountAllocation!]!
+	shippingLine: ShippingRate
+	subtotalPrice: MoneyV2!
+	taxExempt: Boolean!
+	taxesIncluded: Boolean!
+	totalDuties: MoneyV2
+	totalPrice: MoneyV2!
+	totalTax: MoneyV2!
+	updatedAt: DateTime!
+	webUrl: URL!
+}
+type CheckoutBuyerIdentity {
+	countryCode: CountryCode
+}
+type CheckoutLineItem {
+	customAttributes: [Attribute!]!
+	discountAllocations: [DiscountAllocation!]!
+	id: ID!
+	quantity: Int!
+	title: String!
+	unitPrice: MoneyV2
+	variant: ProductVariant
+}
+type ComponentizableCartLine {
+	attribute: Attribute
+	attributes: [Attribute!]!
+	cost: CartLineCost!
+	discountAllocations: [CartDiscountAllocation!]!
+	id: ID!
+	lineComponents: [CartLine!]!
+	merchandise: Merchandise!
+	quantity: Int!
+	sellingPlanAllocation: SellingPlanAllocation
+}
+type CreditCard {
+	brand: String
+	expiryMonth: Int
+	expiryYear: Int
+	firstDigits: String
+	firstName: String
+	lastDigits: String
+	lastName: String
+	maskedNumber: String
+}
+type DiscountAllocation {
+	allocatedAmount: MoneyV2!
+	discountApplication: DiscountApplication!
+}
+type DiscountCodeApplication {
+	allocationMethod: DiscountApplicationAllocationMethod!
+	applicable: Boolean!
+	code: String!
+	targetSelection: DiscountApplicationTargetSelection!
+	targetType: DiscountApplicationTargetType!
+	value: PricingValue!
+}
+type Location {
+	address: LocationAddress!
+	id: ID!
+	metafield: Metafield
+	metafields: [Metafield]!
+	name: String!
+}
+type ManualDiscountApplication {
+	allocationMethod: DiscountApplicationAllocationMethod!
+	description: String
+	targetSelection: DiscountApplicationTargetSelection!
+	targetType: DiscountApplicationTargetType!
+	title: String!
+	value: PricingValue!
+}
+type Payment {
+	amount: MoneyV2!
+	billingAddress: MailingAddress
+	checkout: Checkout!
+	creditCard: CreditCard
+	errorMessage: String
+	id: ID!
+	idempotencyKey: String
+	nextActionUrl: URL
+	ready: Boolean!
+	test: Boolean!
+	transaction: Transaction
+}
+type PaymentSettings {
+	acceptedCardBrands: [CardBrand!]!
+	cardVaultUrl: URL!
+	countryCode: CountryCode!
+	currencyCode: CurrencyCode!
+	enabledPresentmentCurrencies: [CurrencyCode!]!
+	shopifyPaymentsAccountId: String
+	supportedDigitalWallets: [DigitalWallet!]!
+}
+type PricingPercentageValue {
+	percentage: Float!
+}
+type ScriptDiscountApplication {
+	allocationMethod: DiscountApplicationAllocationMethod!
+	targetSelection: DiscountApplicationTargetSelection!
+	targetType: DiscountApplicationTargetType!
+	title: String!
+	value: PricingValue!
+}
+type ShippingRate {
+	handle: String!
+	price: MoneyV2!
+	title: String!
+}
+type StoreAvailability {
+	available: Boolean!
+	location: Location!
+	pickUpTime: String!
+	quantityAvailable: Int!
+}
+type Transaction {
+	amount: MoneyV2!
+	kind: TransactionKind!
+	statusV2: TransactionStatus
+	test: Boolean!
+}
