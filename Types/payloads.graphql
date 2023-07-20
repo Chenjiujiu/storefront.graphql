@@ -65,18 +65,123 @@ type CheckoutCreatePayload {
 	checkoutUserErrors: [CheckoutUserError!]!
 	queueToken: String
 }
-type {
+type CheckoutCustomerAssociateV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+	customer: Customer
+}
+type CheckoutCustomerDisassociateV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutDiscountCodeApplyV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutDiscountCodeRemovePayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutEmailUpdateV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutGiftCardRemoveV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutGiftCardsAppendPayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutLineItemsAddPayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutLineItemsRemovePayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutLineItemsReplacePayload {
+	checkout: Checkout
+	userErrors: [CheckoutUserError!]!
+}
+type CheckoutLineItemsUpdatePayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutShippingAddressUpdateV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutShippingLineUpdatePayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CustomerAccessTokenCreatePayload {
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerAccessTokenCreateWithMultipassPayload {
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerAccessTokenDeletePayload {
+	deletedAccessToken: String
+	userErrors: [UserError!]!
+}
+type CustomerAccessTokenRenewPayload {
+	customerAccessToken: CustomerAccessToken
+	userErrors: [UserError!]!
 
 }
-type {
+type CustomerActivateByUrlPayload {
+	customer: Customer
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerActivatePayload {
+	customer: Customer
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
 
 }
-type {
+type CustomerAddressCreatePayload {
+	customerAddress: MailingAddress
+	customerUserErrors: [CustomerUserError!]!
 
 }
-type {
-
+type CustomerAddressDeletePayload {
+	customerUserErrors: [CustomerUserError!]!
+	deletedCustomerAddressId: String
 }
-type {
-
+type CustomerAddressUpdatePayload {
+	customerAddress: MailingAddress
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerCreatePayload {
+	customer: Customer
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerDefaultAddressUpdatePayload {
+	customer: Customer
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerRecoverPayload {
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerResetByUrlPayload {
+	customer: Customer
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerResetPayload {
+	customer: Customer
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
+}
+type CustomerUpdatePayload {
+	customer: Customer
+	customerAccessToken: CustomerAccessToken
+	customerUserErrors: [CustomerUserError!]!
 }
