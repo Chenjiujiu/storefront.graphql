@@ -1,4 +1,52 @@
-# 根对象
+# Queries
+type Query {
+	cart(id: ID!): Cart
+}
+
+# Mutations
+type Mutation {
+	cartAttributesUpdate(
+		attributes: [AttributeInput!]!
+		cartId: ID!
+	): CartAttributesUpdatePayload
+	cartBuyerIdentityUpdate(
+		buyerIdentity: CartBuyerIdentityInput!
+		cartId: ID!
+	): CartBuyerIdentityUpdatePayload
+	cartCreate(
+		input: CartInput
+	): CartBuyerIdentityUpdatePayload
+	cartDiscountCodesUpdate(
+		cartId: ID!
+		discountCodes: [String!]
+	): CartDiscountCodesUpdatePayload
+	cartLinesAdd(
+		cartId: ID!
+		lines: [CartLineInput!]!
+	): CartLinesAddPayload
+	cartLinesRemove(
+		cartId: ID!
+		lineIds: [ID!]!
+	): CartLinesRemovePayload
+	cartLinesUpdate(
+		cartId: ID!
+		lines: [CartLineUpdateInput!]!
+	): CartLinesUpdatePayload
+	cartMetafieldDelete(
+		input: CartMetafieldDeleteInput!
+	): CartMetafieldDeletePayload
+	cartNoteUpdate(
+		cartId: ID!
+		note: String
+	): CartNoteUpdatePayload
+	cartSelectedDeliveryOptionsUpdate(
+		cartId: ID!
+		selectedDeliveryOptions: [CartSelectedDeliveryOptionInput!]!
+	): CartSelectedDeliveryOptionsUpdatePayload
+
+}
+
+# Objects
 type Cart {
 	attribute: Attribute
 	attributes: [Attribute!]!
@@ -17,14 +65,13 @@ type Cart {
 	deliveryGroups: DeliveryGroupsConnection
 	lines: LinesConnection
 }
-
 # Connections
 type LinesEdge {
 	node: BaseCartLine!
 	cursor: String!
 }
 type LinesConnection {
-	edges: [LinesEdge]
+	edges: [LinesEdge!]!
 	pageInfo: PageInfo!
 }
 type DeliveryGroupsEdge {
@@ -32,29 +79,14 @@ type DeliveryGroupsEdge {
 	cursor: String!
 }
 type DeliveryGroupsConnection {
-	edges: [DeliveryGroupsEdge]
+	edges: [DeliveryGroupsEdge!]!
 	pageInfo: PageInfo!
 }
 
-# 定义根查询类型
-type Query {
-	cartAttributesUpdate(
-		attributes: [AttributeInput!]!
-		cartId: ID!
-	): Cart
-}
-
-# 定义根变异类型
-type Mutation {
-	cart(id: ID!): Cart
-}
-
-# 对象
 type CartAutomaticDiscountAllocation {
 	discountedAmount: MoneyV2!
 	title: String!
 }
-# CartBuyerIdentity
 type CartBuyerIdentity {
 	countryCode: CountryCode
 	customer: Customer
@@ -63,12 +95,10 @@ type CartBuyerIdentity {
 	phone: String
 	walletPreferences: [String!]!
 }
-# CartCodeDiscountAllocation
 type CartCodeDiscountAllocation {
 	code: String!
 	discountedAmount: MoneyV2!
 }
-# CartDeliveryGroup
 type CartDeliveryGroup {
 	deliveryAddress: MailingAddress!
 	deliveryOptions: [CartDeliveryOption!]!
@@ -83,14 +113,14 @@ type CartDeliveryGroup {
 	):CartLinesConnection
 }
 type CartLineEdge {
-	node: CartLine!
+	node: BaseCartLine!
 	cursor: String!
 }
 type CartLinesConnection {
 	edges: [CartLineEdge]
 	pageInfo: PageInfo!
 }
-# CartDeliveryOption
+
 type CartDeliveryOption {
 	code: String
 	deliveryMethodType: DeliveryMethodType!
@@ -99,12 +129,10 @@ type CartDeliveryOption {
 	handle: String!
 	title: String
 }
-# CartDiscountCode
 type CartDiscountCode {
 	applicable: Boolean!
 	code: String!
 }
-# CartEstimatedCost
 type CartEstimatedCost {
 	checkoutChargeAmount: MoneyV2!
 	subtotalAmount: MoneyV2!
@@ -112,7 +140,6 @@ type CartEstimatedCost {
 	totalDutyAmount: MoneyV2
 	totalTaxAmount: MoneyV2
 }
-# CartLine
 type CartLine {
 	attribute: Attribute
 	attributes: [Attribute!]!
@@ -123,7 +150,6 @@ type CartLine {
 	quantity: Int!
 	sellingPlanAllocation: SellingPlanAllocation
 }
-# CartLineEstimatedCost
 type CartLineEstimatedCost {
 	amount: MoneyV2!
 	compareAtAmount: MoneyV2
