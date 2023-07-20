@@ -128,6 +128,7 @@ type CustomerAccessTokenCreateWithMultipassPayload {
 }
 type CustomerAccessTokenDeletePayload {
 	deletedAccessToken: String
+	deletedCustomerAccessTokenId: String
 	userErrors: [UserError!]!
 }
 type CustomerAccessTokenRenewPayload {
@@ -149,7 +150,6 @@ type CustomerActivatePayload {
 type CustomerAddressCreatePayload {
 	customerAddress: MailingAddress
 	customerUserErrors: [CustomerUserError!]!
-
 }
 type CustomerAddressDeletePayload {
 	customerUserErrors: [CustomerUserError!]!
