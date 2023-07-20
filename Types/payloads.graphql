@@ -1,0 +1,82 @@
+type CartAttributesUpdatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartBuyerIdentityUpdatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartCreatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartDiscountCodesUpdatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartLinesAddPayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartLinesRemovePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartLinesUpdatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartMetafieldDeletePayload {
+	deletedId: ID
+	userErrors: [MetafieldDeleteUserError!]!
+}
+type CartMetafieldsSetPayload{
+	metafields: [Metafield!]
+	userErrors: [MetafieldsSetUserError!]!
+}
+type CartNoteUpdatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CartSelectedDeliveryOptionsUpdatePayload {
+	cart: Cart
+	userErrors: [CartUserError!]!
+}
+type CheckoutAttributesUpdateV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutCompleteFreePayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+}
+type CheckoutCompleteWithCreditCardV2Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+	payment: Payment
+}
+type CheckoutCompleteWithTokenizedPaymentV3Payload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+	payment: Payment
+}
+type CheckoutCreatePayload {
+	checkout: Checkout
+	checkoutUserErrors: [CheckoutUserError!]!
+	queueToken: String
+}
+type {
+
+}
+type {
+
+}
+type {
+
+}
+type {
+
+}
+type {
+
+}

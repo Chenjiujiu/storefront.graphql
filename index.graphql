@@ -1,1 +1,9 @@
-
+#import "./scalar.graphql"
+#import "./commonObjects.graphql"
+#import "./cart.graphql"
+#import "./checkouts.graphql"
+#import "./customers.graphql"
+#import "./metaObjects.graphql"
+#import "./onlineStore.graphql"
+#import "./orders.graphql"
+#import "./products.graphql"

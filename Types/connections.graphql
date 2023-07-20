@@ -1,0 +1,104 @@
+type ArticleConnection {
+	edges: [ArticleEdge!]!
+	pageInfo: PageInfo!
+}
+type BaseCartLineConnection {
+	edges: [BaseCartLineEdge!]!
+	pageInfo: PageInfo!
+}
+type BlogConnection {
+	edges: [BlogEdge!]!
+	pageInfo: PageInfo!
+}
+type CartDeliveryGroupConnection {
+	edges: [CartDeliveryGroupEdge!]!
+	pageInfo: PageInfo!
+}
+type CheckoutLineItemConnection {
+	edges: [CheckoutLineItemEdge!]!
+	pageInfo: PageInfo!
+}
+type CollectionConnection {
+	edges: [CollectionEdge!]!
+	pageInfo: PageInfo!
+}
+type CommentConnection {
+	edges: [CommentEdge!]!
+	pageInfo: PageInfo!
+}
+type DiscountApplicationConnection {
+	edges: [DiscountApplicationEdge!]!
+	pageInfo: PageInfo!
+}
+type FulfillmentLineItemConnection {
+	edges: [FulfillmentLineItemEdge!]!
+	pageInfo: PageInfo!
+}
+type ImageConnection {
+	edges: [ImageEdge!]!
+	pageInfo: PageInfo!
+}
+type LocationConnection {
+	edges: [LocationEdge!]!
+	pageInfo: PageInfo!
+}
+type MailingAddressConnection {
+	edges: [MailingAddressEdge!]!
+	pageInfo: PageInfo!
+}
+type MediaConnection {
+	edges: [MediaEdge!]!
+	pageInfo: PageInfo!
+}
+type MetafieldReferenceConnection {
+	edges: [MetafieldReferenceEdge!]!
+	pageInfo: PageInfo!
+}
+type MetaobjectConnection {
+	edges: [MetaobjectEdge!]!
+	pageInfo: PageInfo!
+}
+type OrderConnection {
+	edges: [OrderEdge!]!
+	pageInfo: PageInfo!
+}
+type OrderLineItemConnection {
+	edges: [OrderLineItemEdge!]!
+	pageInfo: PageInfo!
+}
+type PageConnection {
+	edges: [PageEdge!]!
+	pageInfo: PageInfo!
+}
+type ProductConnection {
+	edges: [ProductEdge!]!
+	pageInfo: PageInfo!
+}
+type ProductVariantConnection {
+	edges: [ProductVariantEdge!]!
+	pageInfo: PageInfo!
+}
+type SellingPlanAllocationConnection {
+	edges: [SellingPlanAllocationEdge!]!
+	pageInfo: PageInfo!
+}
+type SellingPlanConnection {
+	edges: [SellingPlanEdge!]!
+	pageInfo: PageInfo!
+}
+type SellingPlanGroupConnection {
+	edges: [SellingPlanGroupEdge!]!
+	pageInfo: PageInfo!
+}
+type StoreAvailabilityConnection {
+	edges: [StoreAvailabilityEdge!]!
+	pageInfo: PageInfo!
+}
+type StringConnection {
+	edges: [StringEdge!]!
+	pageInfo: PageInfo!
+}
+type UrlRedirectConnection {
+	edges: [UrlRedirectEdge!]!
+	pageInfo: PageInfo!
+}

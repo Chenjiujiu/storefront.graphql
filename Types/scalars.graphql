@@ -1,0 +1,14 @@
+# 十进制的字符串. eg:"29.99", "29.999"
+scalar Decimal
+# ISO8601 编码的日期和时间串. eg:"2019-09-07T15:50:00Z"
+scalar DateTime
+# 16进制颜色. eg:"#6A8D48"
+scalar Color
+# HTML代码. eg:"<p>Grey cotton knit sweater.</p>"
+scalar HTML
+# json对象. eg:"{ "product": { "id": "gid://shopify/Product/1346443542550" } }"
+scalar JSON
+# URI字符串. eg:"https://johns-apparel.myshopify.com"
+scalar URL
+# 无符号的64位整数。. eg:"50"
+scalar UnsignedInt64

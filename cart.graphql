@@ -1,0 +1,132 @@
+# 根对象
+type Cart {
+	attribute: Attribute
+	attributes: [Attribute!]!
+	buyerIdentity: CarBuyerIdentity!
+	checkoutUrl: URL!
+	cost: CartCost!
+	createdAt: DateTime!
+	discountAllocations: [CartDiscountAllocation!]!
+	discountCodes: [CartDiscountCode!]!
+	id: ID!
+	metafield: Metafield
+	metafields: [Metafield!]!
+	note: String
+	totalQuantity: Int
+	updatedAt: DateTime
+	deliveryGroups: DeliveryGroupsConnection
+	lines: LinesConnection
+}
+
+# Connections
+type LinesEdge {
+	node: BaseCartLine!
+	cursor: String!
+}
+type LinesConnection {
+	edges: [LinesEdge]
+	pageInfo: PageInfo!
+}
+type DeliveryGroupsEdge {
+	node: DeliveryGroups!
+	cursor: String!
+}
+type DeliveryGroupsConnection {
+	edges: [DeliveryGroupsEdge]
+	pageInfo: PageInfo!
+}
+
+# 定义根查询类型
+type Query {
+	cartAttributesUpdate(
+		attributes: [AttributeInput!]!
+		cartId: ID!
+	): Cart
+}
+
+# 定义根变异类型
+type Mutation {
+	cart(id: ID!): Cart
+}
+
+# 对象
+type CartAutomaticDiscountAllocation {
+	discountedAmount: MoneyV2!
+	title: String!
+}
+# CartBuyerIdentity
+type CartBuyerIdentity {
+	countryCode: CountryCode
+	customer: Customer
+	deliveryAddressPreferences: [DeliveryAddress!]!
+	email: String
+	phone: String
+	walletPreferences: [String!]!
+}
+# CartCodeDiscountAllocation
+type CartCodeDiscountAllocation {
+	code: String!
+	discountedAmount: MoneyV2!
+}
+# CartDeliveryGroup
+type CartDeliveryGroup {
+	deliveryAddress: MailingAddress!
+	deliveryOptions: [CartDeliveryOption!]!
+	id: ID!
+	selectedDeliveryOption: CartDeliveryOption
+	CartLines(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	):CartLinesConnection
+}
+type CartLineEdge {
+	node: CartLine!
+	cursor: String!
+}
+type CartLinesConnection {
+	edges: [CartLineEdge]
+	pageInfo: PageInfo!
+}
+# CartDeliveryOption
+type CartDeliveryOption {
+	code: String
+	deliveryMethodType: DeliveryMethodType!
+	description: String
+	estimatedCost: MoneyV2!
+	handle: String!
+	title: String
+}
+# CartDiscountCode
+type CartDiscountCode {
+	applicable: Boolean!
+	code: String!
+}
+# CartEstimatedCost
+type CartEstimatedCost {
+	checkoutChargeAmount: MoneyV2!
+	subtotalAmount: MoneyV2!
+	totalAmount: MoneyV2!
+	totalDutyAmount: MoneyV2
+	totalTaxAmount: MoneyV2
+}
+# CartLine
+type CartLine {
+	attribute: Attribute
+	attributes: [Attribute!]!
+	cost: CartLineCost!
+	discountAllocations: [CartDiscountAllocation!]!
+	id: ID!
+	merchandise: Merchandise!
+	quantity: Int!
+	sellingPlanAllocation: SellingPlanAllocation
+}
+# CartLineEstimatedCost
+type CartLineEstimatedCost {
+	amount: MoneyV2!
+	compareAtAmount: MoneyV2
+	subtotalAmount: MoneyV2!
+	totalAmount: MoneyV2!
+}

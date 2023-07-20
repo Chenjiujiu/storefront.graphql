@@ -1,0 +1,126 @@
+#import "./scalar.graphql"
+
+#基础类型
+type Price {
+	amount: Decimal!
+	currencyCode: CurrencyCode
+}
+type MoneyV2 {
+	amount: Decimal!
+	currencyCode: CurrencyCode!
+}
+type SEO {
+	description: String
+	title: String
+}
+type PageInfo {
+	startCursor: String
+	endCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+type Domain {
+	host: String!
+	sslEnabled: Boolean!
+	url: URL!
+}
+
+#图片
+enum ProductImageSortKeys {
+	CREATED_AT
+	ID
+	POSITION
+	RELEVANCE
+}
+type Image {
+	altText: String
+	height: Int
+	id: ID
+	url: URL!
+	width: Int
+}
+type ImageEdge {
+	node: Image!
+	cursor: String!
+}
+type ImageConnection {
+	edges: [ImageEdge]
+	pageInfo: PageInfo!
+}
+
+#媒体
+enum ProductMediaSortKeys {
+	ID
+	POSITION
+	RELEVANCE
+}
+enum MediaContentType {
+	EXTERNAL_VIDEO
+	IMAGE
+	MODEL_3D
+	VIDEO
+}
+type MediaPresentation {
+	esJson: Json
+	id: ID!
+}
+type Media {
+	alt: String
+	mediaContentType: MediaContentType!
+	presentation: MediaPresentation
+	previewImage: Image
+}
+type MediaImage {
+	alt: String
+	id: ID!
+	image: Image
+	mediaContentType: MediaContentType!
+	presentation: MediaPresentation
+	previewImage: Image
+}
+type MediaEdge {
+	node: Media!
+	cursor: String!
+}
+type MediaConnection {
+	edges: [MediaEdge]
+	pageInfo: PageInfo!
+}
+
+# 元字段
+union MetafieldParentResource = Article | Blog | Cart | Collection | Customer | Location | Market | Order | Page | Product | ProductVariant | Shop
+union MetafieldReference = Collection | GenericFile | MediaImage | Metaobject | Page | Product | ProductVariant | Video
+type Metafield {
+	createdAt: DateTime!
+	description: String
+	id: ID!
+	key: String!
+	namespace: String!
+	parentResource: MetafieldParentResource!
+	reference: MetafieldReference
+	type: String!
+	updatedAt: DateTime
+	value: String!
+}
+
+#邮件地址
+type MailingAddress {
+	address1: String
+	address2: String
+	city: String
+	company: String
+	country: String
+	countryCodeV2: CountryCode
+	firstName: String
+	formatted: [String!]!
+	formattedArea: String
+	id: ID!
+	lastName: String
+	latitude: Float
+	longitude: Float
+	name: String
+	phone: String
+	province: String
+	provinceCode: String
+	zip: String
+}

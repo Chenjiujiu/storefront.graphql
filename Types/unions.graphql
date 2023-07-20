@@ -1,0 +1,9 @@
+union DeliveryAddress = MailingAddress
+union MenuItemResource = Article | Blog | Collection | Page | Product | ShopPolicy
+union Merchandise = ProductVariant
+union MetafieldParentResource = Article | Blog | Cart | Collection | Customer | Location | Market | Order | Page | Product | ProductVariant | Shop
+union MetafieldReference = Collection | GenericFile | MediaImage | Metaobject | Page | Product | ProductVariant | Video
+union PricingValue = MoneyV2 | PricingPercentageValue
+union SearchResultItem = Article | Page | Product
+union SellingPlanCheckoutChargeValue = MoneyV2 | SellingPlanCheckoutChargePercentageValue
+union SellingPlanPriceAdjustmentValue = SellingPlanFixedAmountPriceAdjustment | SellingPlanFixedPriceAdjustment | SellingPlanPercentagePriceAdjustment

@@ -1,0 +1,138 @@
+type ArticleEdge {
+	cursor: String!
+	node: Article!
+}
+type BaseCartLineEdge {
+	cursor: String!
+	node: BaseCartLine!
+}
+type BlogEdge {
+	cursor: String!
+	node: Blog!
+}
+type CartDeliveryGroupEdge {
+	cursor: String!
+	node: CartDeliveryGroup!
+}
+type CartUserError {
+	code: CartErrorCode
+	field: [String!]
+	message: String!
+}
+type CheckoutLineItemEdge {
+	cursor: String!
+	node: CheckoutLineItem!
+}
+type CheckoutUserError {
+	code: CheckoutErrorCode
+	field: [String!]
+	message: String!
+}
+type CollectionEdge {
+	cursor: String!
+	node: Collection!
+}
+type CommentEdge{
+	cursor: String!
+	node: Comment!
+}
+type CustomerUserError {
+	code: CustomerErrorCode
+	field: [String!]
+	message: String!
+}
+type DiscountApplicationEdge{
+	cursor: String!
+	node: DiscountApplication!
+}
+type FulfillmentLineItemEdge{
+	cursor: String!
+	node: FulfillmentLineItem!
+}
+type ImageEdge{
+	cursor: String!
+	node: Image!
+}
+type LocationEdge{
+	cursor: String!
+	node: Location!
+}
+type MailingAddressEdge{
+	cursor: String!
+	node: MailingAddress!
+}
+type MediaEdge{
+	cursor: String!
+	node: Media!
+}
+type MetafieldDeleteUserError {
+	code: MetafieldDeleteErrorCode
+	field: [String!]
+	message: String!
+}
+type MetafieldReferenceEdge{
+	cursor: String!
+	node: MetafieldReference!
+}
+type MetafieldsSetUserError {
+	code: MetafieldsSetUserErrorCode
+	elementIndex: Int
+	field: [String!]
+	message: String!
+}
+type MetaobjectEdge{
+	cursor: String!
+	node: Metaobject!
+}
+type OrderEdge{
+	cursor: String!
+	node: Order!
+}
+type OrderLineItemEdge{
+	cursor: String!
+	node: OrderLineItem!
+}
+type PageEdge{
+	cursor: String!
+	node: Page!
+}
+type ProductEdge{
+	cursor: String!
+	node: Product!
+}
+type ProductVariantEdge{
+	cursor: String!
+	node: ProductVariant!
+}
+type SearchResultItemEdge{
+	cursor: String!
+	node: SearchResultItem!
+}
+type SellingPlanAllocationEdge{
+	cursor: String!
+	node: SellingPlanAllocation!
+}
+type SellingPlanEdge{
+	cursor: String!
+	node: SellingPlan!
+}
+type SellingPlanGroupEdge{
+	cursor: String!
+	node: SellingPlanGroup!
+}
+type StoreAvailabilityEdge{
+	cursor: String!
+	node: StoreAvailability!
+}
+type StringEdge{
+	cursor: String!
+	node: String!
+}
+type UrlRedirectEdge{
+	cursor: String!
+	node: UrlRedirect!
+}
+type UserError{
+	field: [String!]
+	message: String!
+}

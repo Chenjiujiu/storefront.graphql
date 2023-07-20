@@ -1,0 +1,191 @@
+input AttributeInput {
+	key: String!
+	value: String!
+}
+input CartBuyerIdentityInput {
+	countryCode: CountryCode
+	customerAccessToken: String
+	deliveryAddressPreferences: [DeliveryAddressInput!]
+	email: String
+	phone: String
+	walletPreferences: [String!]
+}
+input CartInput {
+	attributes: [AttributeInput!]
+	buyerIdentity: CartBuyerIdentityInput
+	discountCodes: [String!]
+	lines: [CartLineInput!]
+	metafields: [CartInputMetafieldInput!]
+	note: String
+}
+input CartInputMetafieldInput {
+	key: String!
+	type: String!
+	value: String!
+}
+input CartLineInput {
+	attributes: [AttributeInput!]
+	merchandiseId: ID!
+	quantity: Int
+	sellingPlanId: ID
+}
+input CartLineUpdateInput {
+	attributes: [AttributeInput!]
+	id: ID!
+	merchandiseId: ID
+	quantity: Int
+	sellingPlanId: ID
+}
+input CartMetafieldDeleteInput {
+	key: String!
+	ownerId: ID!
+}
+input CartMetafieldsSetInput {
+	key: String!
+	ownerId: ID!
+	type: String!
+	value: String!
+}
+input CartSelectedDeliveryOptionInput {
+	deliveryGroupId: ID!
+	deliveryOptionHandle: String!
+}
+input CheckoutAttributesUpdateV2Input {
+	allowPartialAddresses: Boolean
+	customAttributes: [AttributeInput!]
+	note: String!
+}
+input CheckoutBuyerIdentityInput {
+	countryCode: CountryCode
+}
+input CheckoutCreateInput {
+	allowPartialAddresses: Boolean
+	buyerIdentity: CheckoutBuyerIdentityInput
+	customAttributes: [AttributeInput!]
+	email:String
+	lineItems:[CheckoutLineItemInput!]
+	note:String
+	presentmentCurrencyCode:CurrencyCode
+	shippingAddress:MailingAddressInput
+}
+input CheckoutLineItemInput {
+	customAttributes: [AttributeInput!]
+	quantity: Int!
+	variantId: ID!
+}
+input CheckoutLineItemUpdateInput {
+	customAttributes: [AttributeInput!]
+	id: ID
+	quantity: Int
+	variantId: ID
+}
+input	CreditCardPaymentInputV2 {
+	billingAddress: MailingAddressInput!
+	idempotencyKey: String!
+	paymentAmount: MoneyInput!
+	test: Boolean
+	vaultId: String!
+}
+input	CustomerAccessTokenCreateInput {
+	email: String!
+	password: String!
+}
+input	CustomerActivateInput {
+	activationToken: String!
+	password: String!
+}
+input	CustomerCreateInput {
+	acceptsMarketing: Boolean
+	email: String!
+	firstName: String
+	lastName: String
+	password: String!
+	phone: String
+}
+input CustomerResetInput {
+	password: String!
+	resetToken: String!
+}
+input CustomerUpdateInput {
+	acceptsMarketing: Boolean
+	email: String
+	firstName: String
+	lastName: String
+	password: String
+	phone: String
+}
+input DeliveryAddressInput {
+	customerAddressId: ID
+	deliveryAddress: MailingAddressInput
+}
+input GeoCoordinateInput {
+	latitude: Float!
+	longitude: Float!
+}
+input HasMetafieldsIdentifier {
+	key: String!
+	namespace: String!
+}
+input ImageTransformInput {
+	crop: CropRegion
+	maxHeight: Int
+	maxWidth: Int
+	preferredContentType: ImageContentType
+	scale: Int
+}
+input MailingAddressInput {
+	address1: String
+	address2: String
+	city: String
+	company: String
+	country: String
+	firstName: String
+	lastName: String
+	phone: String
+	province: String
+	zip: String
+}
+input MetafieldFilter {
+	key: String!
+	namespace: String!
+	value: String!
+}
+input MetaobjectHandleInput {
+	handle: String!
+	type: String!
+}
+input MoneyInput {
+	amount: Decimal!
+	currencyCode: CurrencyCode!
+}
+input PriceRangeFilter {
+	max: Float!
+	min: Float!
+}
+input ProductFilter {
+	available: Boolean
+	price: PriceRangeFilter
+	productMetafield: MetafieldFilter
+	productType: String
+	productVendor: String
+	tag: String
+	variantMetafield: MetafieldFilter
+	variantOption: VariantOptionFilter
+}
+input SelectedOptionInput {
+	name: String!
+	value: String!
+}
+input TokenizedPaymentInputV3 {
+	billingAddress: MailingAddressInput!
+	idempotencyKey: String!
+	identifier: String
+	paymentAmount: MoneyInput!
+	paymentData: String!
+	test: Boolean
+	type: PaymentTokenType!
+}
+input VariantOptionFilter {
+	name: String!
+	value: String!
+}

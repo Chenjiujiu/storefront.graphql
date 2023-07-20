@@ -1,0 +1,48 @@
+type Brand {
+	colors: BrandColors!
+	coverImage: MediaImage
+	logo: MediaImage
+	shortDescription: String
+	slogan: String
+	squareLogo: MediaImage
+}
+type BrandColorGroup {
+	background: Color
+	foreground: Color
+}
+type BrandColors {
+	primary: [BrandColorGroup!]!
+	secondary: [BrandColorGroup!]!
+}
+type ShopPolicy {
+	body: String!
+	handle: String!
+	id: ID!
+	title: String!
+	url: URL!
+}
+type ShopPolicyWithDefault {
+	body: String!
+	handle: String!
+	id: ID
+	title: String!
+	url: URL!
+}
+
+type Shop {
+	brand: Brand
+	description: String
+	id: ID!
+	metafield: Metafield
+	metafields: [Metafield]!
+	moneyFormat: String!
+	name: String!
+	paymentSettings: PaymentSettings!
+	primaryDomain: Domain!
+	privacyPolicy: ShopPolicy
+	refundPolicy: ShopPolicy
+	shippingPolicy: ShopPolicy
+	shipsToCountries: [CountryCode!]!
+	subscriptionPolicy: ShopPolicyWithDefault
+	termsOfService: ShopPolicy
+}

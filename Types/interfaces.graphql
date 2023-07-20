@@ -1,0 +1,43 @@
+interface BaseCartLine {
+	attribute: Attribute
+	attributes: [Attribute!]!
+	cost: CartLineCost!
+	discountAllocations: [CartDiscountAllocation!]!
+	id: ID!
+	merchandise: Merchandise!
+	quantity: Int!
+	sellingPlanAllocation: SellingPlanAllocation
+}
+interface CartDiscountAllocation {
+	discountedAmount: MoneyV2!
+}
+interface DiscountApplication {
+	allocationMethod: DiscountApplicationAllocationMethod!
+	targetSelection: DiscountApplicationTargetSelection!
+	targetType: DiscountApplicationTargetType!
+	value: PricingValue!
+}
+interface DisplayableError {
+	field: [String!]
+	message: String!
+}
+interface HasMetafields {
+	metafield: Metafield
+	metafields: [Metafield]!
+}
+interface Media {
+	alt: String
+	id: ID!
+	mediaContentType: MediaContentType!
+	presentation: MediaPresentation
+	previewImage: Image
+}
+interface Node {
+	id: ID!
+}
+interface OnlineStorePublishable {
+	onlineStoreUrl: URL
+}
+interface Trackable {
+	trackingParameters: String
+}

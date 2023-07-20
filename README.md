@@ -1,4 +1,14 @@
-## shopify storefrontAPI 的 apollographql scheme 参数
+<div style="text-align: center">
+
+# scheme.graphql App
+`@Copyright 2023 By micas`
+
+`shopify storefrontAPI 的 apollographql scheme 参数`
+
+![](https://img.shields.io/static/v1?label=storefront&message=2023-07&color=brightgreen)
+</div>
+
+******
 
 > storefrontAPI版本`2023-07`
 使用方法    
@@ -13,7 +23,7 @@
 import { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
-  schema: '<URL_OF_YOUR_GRAPHQL_API>',
+  schema: '<本项目 index.graphql路径>',
   documents: ['src/**/*.tsx'],
   generates: {
     './src/__generated__/': {
@@ -30,3 +40,5 @@ const config: CodegenConfig = {
 export default config;
 
 ```
+
+
