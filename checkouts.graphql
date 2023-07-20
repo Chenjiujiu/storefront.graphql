@@ -1,82 +1,3 @@
-# Queries
-type Query {
-	locations(
-		after: String
-		before: String
-		first: Int
-		last: Int
-		near: GeoCoordinateInput
-		reverse: Boolean
-		sortKey: LocationSortKeys
-	): LocationConnection
-}
-
-# Mutations
-type Mutation {
-	CheckoutAttributesUpdateV2Input(
-		checkoutId: ID!
-		input: CheckoutAttributesUpdateV2Input!
-	): CheckoutAttributesUpdateV2Payload
-	checkoutCompleteFree(
-		checkoutId: ID!
-	): CheckoutCompleteFreePayload
-	checkoutCompleteWithCreditCardV2(
-		checkoutId: ID!
-		payment: CreditCardPaymentInputV2!
-	): CheckoutCompleteWithCreditCardV2Payload
-	checkoutCompleteWithTokenizedPaymentV3(
-		checkoutId: ID!
-		payment: TokenizedPaymentInputV3!
-	): CheckoutCompleteWithTokenizedPaymentV3Payload
-	checkoutDiscountCodeApplyV2(
-		checkoutId: ID!
-		discountCode: String!
-	): CheckoutDiscountCodeApplyV2Payload
-	checkoutDiscountCodeRemove(
-		checkoutId: ID!
-	): CheckoutDiscountCodeRemovePayload
-	checkoutEmailUpdateV2(
-		checkoutId: ID!
-		email: String
-	): CheckoutEmailUpdateV2Payload
-	checkoutGiftCardRemoveV2(
-		appliedGiftCardId: ID!
-		checkoutId: ID!
-	): CheckoutGiftCardRemoveV2Payload
-	checkoutGiftCardsAppend(
-		checkoutId: ID!
-		giftCardCodes: [String!]!
-	): CheckoutGiftCardsAppendPayload
-	checkoutLineItemsAdd(
-		checkoutId: ID!
-		lineItems: [CheckoutLineItemInput!]!
-	): CheckoutLineItemsAddPayload
-	checkoutLineItemsRemove(
-		checkoutId: ID!
-		lineItemIds: [ID!]!
-	): CheckoutLineItemsRemovePayload
-	checkoutLineItemsReplace(
-		checkoutId: ID!
-		lineItems: [CheckoutLineItemInput!]!
-	): CheckoutLineItemsReplacePayload
-	checkoutLineItemsUpdate(
-		checkoutId: ID!
-		lineItems: [CheckoutLineItemUpdateInput!]!
-	): CheckoutLineItemsUpdatePayload
-	checkoutShippingAddressUpdateV2(
-		checkoutId: ID!
-		shippingAddress: MailingAddressInput!
-	): CheckoutShippingAddressUpdateV2Payload
-	checkoutShippingLineUpdate(
-		checkoutId: ID!
-		shippingRateHandle: String!
-	): CheckoutShippingLineUpdatePayload
-
-
-
-
-}
-
 # Objects
 type AppliedGiftCard {
 	amountUsed: MoneyV2!
@@ -145,6 +66,8 @@ type Checkout {
 	totalTax: MoneyV2!
 	updatedAt: DateTime!
 	webUrl: URL!
+	discountApplications: DiscountApplicationConnection
+	lineItems: LineItemConnection
 }
 type CheckoutBuyerIdentity {
 	countryCode: CountryCode
@@ -159,7 +82,7 @@ type CheckoutLineItem {
 	variant: ProductVariant
 }
 type ComponentizableCartLine {
-	attribute: Attribute
+	attribute(key: String!): Attribute
 	attributes: [Attribute!]!
 	cost: CartLineCost!
 	discountAllocations: [CartDiscountAllocation!]!
@@ -194,8 +117,8 @@ type DiscountCodeApplication {
 type Location {
 	address: LocationAddress!
 	id: ID!
-	metafield: Metafield
-	metafields: [Metafield]!
+	metafield(namespace:String!, key: String!): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
 	name: String!
 }
 type ManualDiscountApplication {

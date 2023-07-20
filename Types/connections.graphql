@@ -103,56 +103,46 @@ type UrlRedirectConnection {
 	pageInfo: PageInfo!
 }
 # 其他的connection 汇总
+#cart
 type LinesConnection {
 	edges: [LinesEdge!]!
 	pageInfo: PageInfo!
 }
-type DeliveryGroupsConnection {
-	edges: [DeliveryGroupsEdge!]!
+type CartLineConnection {
+	edges: [CartLineEdge]
 	pageInfo: PageInfo!
 }
+#checkout
+type LineItemConnection {
+	edges: [LineItemEdge]
+	pageInfo: PageInfo!
+}
+type ReferenceConnection {
+	edges: [ReferenceEdge]
+	pageInfo: PageInfo!
+}
+#customer
+type ProductTagConnection {
+	edges: [ProductTagEdge!]!
+	pageInfo: PageInfo
+}
+type ProductTypeConnection {
+	edges: [ProductTypeEdge!]!
+	pageInfo: PageInfo
+}
+type SearchConnection {
+	edges: [SearchEdge!]!
+	pageInfo: PageInfo
+}
+#online store
+type CommentsConnection {
+	edges: [CommentsEdge!]!
+	pageInfo: PageInfo
+}
+#search
+type SearchResultItemConnection {
+	edges:[SearchResultItemEdge!]!
+	pageInfo: PageInfo
+}
+#search
 
-type ArticlesConnection{
-	edges: [articlesEdge!]!
-	pageInfo: PageInfo
-}
-type BlogsConnection{
-	edges: [blogsEdge!]!
-	pageInfo: PageInfo
-}
-type CollectionsConnection{
-	edges: [collectionsEdge!]!
-	pageInfo: PageInfo
-}
-type LocationsConnection{
-	edges: [locationsEdge!]!
-	pageInfo: PageInfo
-}
-type MetaobjectsConnection{
-	edges: [metaobjectsEdge!]!
-	pageInfo: PageInfo
-}
-type PagesConnection{
-	edges: [pagesEdge!]!
-	pageInfo: PageInfo
-}
-type ProductTagsConnection{
-	edges: [productTagsEdge!]!
-	pageInfo: PageInfo
-}
-type ProductTypesConnection{
-	edges: [productTypesEdge!]!
-	pageInfo: PageInfo
-}
-type ProductsConnection{
-	edges: [productsEdge!]!
-	pageInfo: PageInfo
-}
-type SearchConnection{
-	edges: [searchEdge!]!
-	pageInfo: PageInfo
-}
-type UrlRedirectsConnection{
-	edges: [urlRedirectsEdge!]!
-	pageInfo: PageInfo
-}

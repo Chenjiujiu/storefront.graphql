@@ -1,0 +1,12 @@
+type PredictiveSearchResult {
+	articles: [Article!]!
+	collections: [Collection!]!
+	pages: [Page!]!
+	products: [Product!]!
+	queries: [SearchQuerySuggestion!]!
+}
+type SearchQuerySuggestion {
+	styledText: String!
+	text: String!
+	trackingParameters: String
+}

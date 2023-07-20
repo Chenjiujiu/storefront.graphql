@@ -1,68 +1,20 @@
-# Queries
-type Query {
-	cart(id: ID!): Cart
-}
-
-# Mutations
-type Mutation {
-	cartAttributesUpdate(
-		attributes: [AttributeInput!]!
-		cartId: ID!
-	): CartAttributesUpdatePayload
-	cartBuyerIdentityUpdate(
-		buyerIdentity: CartBuyerIdentityInput!
-		cartId: ID!
-	): CartBuyerIdentityUpdatePayload
-	cartCreate(
-		input: CartInput
-	): CartBuyerIdentityUpdatePayload
-	cartDiscountCodesUpdate(
-		cartId: ID!
-		discountCodes: [String!]
-	): CartDiscountCodesUpdatePayload
-	cartLinesAdd(
-		cartId: ID!
-		lines: [CartLineInput!]!
-	): CartLinesAddPayload
-	cartLinesRemove(
-		cartId: ID!
-		lineIds: [ID!]!
-	): CartLinesRemovePayload
-	cartLinesUpdate(
-		cartId: ID!
-		lines: [CartLineUpdateInput!]!
-	): CartLinesUpdatePayload
-	cartMetafieldDelete(
-		input: CartMetafieldDeleteInput!
-	): CartMetafieldDeletePayload
-	cartNoteUpdate(
-		cartId: ID!
-		note: String
-	): CartNoteUpdatePayload
-	cartSelectedDeliveryOptionsUpdate(
-		cartId: ID!
-		selectedDeliveryOptions: [CartSelectedDeliveryOptionInput!]!
-	): CartSelectedDeliveryOptionsUpdatePayload
-
-}
-
 # Objects
 type Cart {
-	attribute: Attribute
+	attribute(key: String!): Attribute
 	attributes: [Attribute!]!
-	buyerIdentity: CarBuyerIdentity!
+	buyerIdentity: CartBuyerIdentity!
 	checkoutUrl: URL!
 	cost: CartCost!
 	createdAt: DateTime!
 	discountAllocations: [CartDiscountAllocation!]!
 	discountCodes: [CartDiscountCode!]!
 	id: ID!
-	metafield: Metafield
-	metafields: [Metafield!]!
+	metafield(namespace: String!, Key: String!): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield!]!
 	note: String
 	totalQuantity: Int
 	updatedAt: DateTime
-	deliveryGroups: DeliveryGroupsConnection
+	deliveryGroups: CartDeliveryGroupConnection
 	lines: LinesConnection
 }
 type CartAutomaticDiscountAllocation {
@@ -92,17 +44,8 @@ type CartDeliveryGroup {
 		last: Int
 		before: String
 		reverse: Boolean
-	):CartLinesConnection
+	):CartLineConnection
 }
-type CartLineEdge {
-	node: BaseCartLine!
-	cursor: String!
-}
-type CartLinesConnection {
-	edges: [CartLineEdge]
-	pageInfo: PageInfo!
-}
-
 type CartDeliveryOption {
 	code: String
 	deliveryMethodType: DeliveryMethodType!

@@ -1,0 +1,63 @@
+type Fulfillment {
+	trackingCompany: String
+	trackingInfo(first: Int): [FulfillmentTrackingInfo!]!
+	fulfillmentLineItems: FulfillmentLineItemConnection
+}
+type FulfillmentLineItem {
+	lineItem: OrderLineItem!
+	quantity: Int!
+}
+type FulfillmentTrackingInfo {
+	number: String
+	url: URL
+}
+type Order {
+	billingAddress: MailingAddress
+	cancelReason: OrderCancelReason
+	canceledAt: DateTime
+	currencyCode: CurrencyCode!
+	currentSubtotalPrice: MoneyV2!
+	currentTotalDuties: MoneyV2
+	currentTotalPrice: MoneyV2!
+	currentTotalTax: MoneyV2!
+	customAttributes: [Attribute!]!
+	customerLocale: String
+	customerUrl: URL
+	edited: Boolean!
+	email: String
+	financialStatus: OrderFinancialStatus
+	fulfillmentStatus: OrderFulfillmentStatus!
+	id: ID!
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	name: String!
+	orderNumber: Int!
+	originalTotalDuties: MoneyV2
+	originalTotalPrice: MoneyV2!
+	phone: String
+	processedAt: DateTime!
+	shippingAddress: MailingAddress
+	shippingDiscountAllocations: [DiscountAllocation!]!
+	statusUrl: URL!
+	subtotalPrice: MoneyV2
+	successfulFulfillments(first: Int): [Fulfillment!]
+	totalPrice: MoneyV2!
+	totalRefunded: MoneyV2!
+	totalShippingPrice: MoneyV2!
+	totalTax: MoneyV2
+	discountApplications: DiscountApplicationConnection
+	lineItems: LineItemConnection
+}
+type OrderLineItem {
+	currentQuantity: Int!
+	customAttributes: [Attribute!]!
+	discountAllocations: [DiscountAllocation!]!
+	discountedTotalPrice: MoneyV2!
+	originalTotalPrice: MoneyV2!
+	quantity: Int!
+	title: String!
+	variant: ProductVariant
+}

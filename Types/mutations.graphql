@@ -1,0 +1,162 @@
+# Mutations
+type Mutation {
+#cart
+	cartAttributesUpdate(
+		attributes: [AttributeInput!]!
+		cartId: ID!
+	): CartAttributesUpdatePayload
+	cartBuyerIdentityUpdate(
+		buyerIdentity: CartBuyerIdentityInput!
+		cartId: ID!
+	): CartBuyerIdentityUpdatePayload
+	cartCreate(
+		input: CartInput
+	): CartBuyerIdentityUpdatePayload
+	cartDiscountCodesUpdate(
+		cartId: ID!
+		discountCodes: [String!]
+	): CartDiscountCodesUpdatePayload
+	cartLinesAdd(
+		cartId: ID!
+		lines: [CartLineInput!]!
+	): CartLinesAddPayload
+	cartLinesRemove(
+		cartId: ID!
+		lineIds: [ID!]!
+	): CartLinesRemovePayload
+	cartLinesUpdate(
+		cartId: ID!
+		lines: [CartLineUpdateInput!]!
+	): CartLinesUpdatePayload
+	cartMetafieldDelete(
+		input: CartMetafieldDeleteInput!
+	): CartMetafieldDeletePayload
+	cartNoteUpdate(
+		cartId: ID!
+		note: String
+	): CartNoteUpdatePayload
+	cartSelectedDeliveryOptionsUpdate(
+		cartId: ID!
+		selectedDeliveryOptions: [CartSelectedDeliveryOptionInput!]!
+	): CartSelectedDeliveryOptionsUpdatePayload
+#checkout
+	CheckoutAttributesUpdateV2Input(
+		checkoutId: ID!
+		input: CheckoutAttributesUpdateV2Input!
+	): CheckoutAttributesUpdateV2Payload
+	checkoutCompleteFree(
+		checkoutId: ID!
+	): CheckoutCompleteFreePayload
+	checkoutCompleteWithCreditCardV2(
+		checkoutId: ID!
+		payment: CreditCardPaymentInputV2!
+	): CheckoutCompleteWithCreditCardV2Payload
+	checkoutCompleteWithTokenizedPaymentV3(
+		checkoutId: ID!
+		payment: TokenizedPaymentInputV3!
+	): CheckoutCompleteWithTokenizedPaymentV3Payload
+	checkoutDiscountCodeApplyV2(
+		checkoutId: ID!
+		discountCode: String!
+	): CheckoutDiscountCodeApplyV2Payload
+	checkoutDiscountCodeRemove(
+		checkoutId: ID!
+	): CheckoutDiscountCodeRemovePayload
+	checkoutEmailUpdateV2(
+		checkoutId: ID!
+		email: String
+	): CheckoutEmailUpdateV2Payload
+	checkoutGiftCardRemoveV2(
+		appliedGiftCardId: ID!
+		checkoutId: ID!
+	): CheckoutGiftCardRemoveV2Payload
+	checkoutGiftCardsAppend(
+		checkoutId: ID!
+		giftCardCodes: [String!]!
+	): CheckoutGiftCardsAppendPayload
+	checkoutLineItemsAdd(
+		checkoutId: ID!
+		lineItems: [CheckoutLineItemInput!]!
+	): CheckoutLineItemsAddPayload
+	checkoutLineItemsRemove(
+		checkoutId: ID!
+		lineItemIds: [ID!]!
+	): CheckoutLineItemsRemovePayload
+	checkoutLineItemsReplace(
+		checkoutId: ID!
+		lineItems: [CheckoutLineItemInput!]!
+	): CheckoutLineItemsReplacePayload
+	checkoutLineItemsUpdate(
+		checkoutId: ID!
+		lineItems: [CheckoutLineItemUpdateInput!]!
+	): CheckoutLineItemsUpdatePayload
+	checkoutShippingAddressUpdateV2(
+		checkoutId: ID!
+		shippingAddress: MailingAddressInput!
+	): CheckoutShippingAddressUpdateV2Payload
+	checkoutShippingLineUpdate(
+		checkoutId: ID!
+		shippingRateHandle: String!
+	): CheckoutShippingLineUpdatePayload
+#common
+	cartMetafieldsSet(
+		metafields: [CartMetafieldsSetInput!]!
+	): CartMetafieldsSetPayload
+#customer
+	customerAccessTokenCreate(
+		input: CustomerAccessTokenCreateInput!
+	): CustomerAccessTokenCreatePayload
+	customerAccessTokenCreateWithMultipass(
+		multipassToken: String!
+	): CustomerAccessTokenCreateWithMultipassPayload
+	customerAccessTokenDelete(
+		customerAccessToken: String!
+	): CustomerAccessTokenDeletePayload
+	customerAccessTokenRenew(
+		customerAccessToken: String!
+	): CustomerAccessTokenRenewPayload
+	customerActivate(
+		id: ID!
+		input: CustomerActivateInput!
+	): CustomerActivatePayload
+	customerActivateByUrl(
+		activationUrl: URL!
+		password: String!
+	): CustomerActivateByUrlPayload
+	customerAddressCreate(
+		address: MailingAddressInput!
+		customerAccessToken: String!
+	): CustomerAddressCreatePayload
+	customerAddressDelete(
+		customerAccessToken: String!
+		id: ID!
+	): CustomerAddressDeletePayload
+	customerAddressUpdate(
+		address: MailingAddressInput!
+		customerAccessToken: String!
+		id: ID!
+	): CustomerAddressUpdatePayload
+	customerCreate(
+		input: CustomerCreateInput!
+	): CustomerCreatePayload
+	customerDefaultAddressUpdate(
+		addressId: ID!
+		customerAccessToken: String!
+	): CustomerDefaultAddressUpdatePayload
+	customerRecover(
+		email: String!
+	): CustomerRecoverPayload
+	customerReset(
+		id: ID!
+		input: CustomerResetInput!
+	): CustomerResetPayload
+	customerResetByUrl(
+		password: String!
+		resetUrl: URL!
+	): CustomerResetByUrlPayload
+	customerUpdate(
+		customer: CustomerUpdateInput!
+		customerAccessToken: String!
+	): CustomerUpdatePayload
+}
+

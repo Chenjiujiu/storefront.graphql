@@ -1,0 +1,97 @@
+type Query {
+	cart(id: ID!): Cart
+	locations(
+		after: String
+		before: String
+		first: Int
+		last: Int
+		near: GeoCoordinateInput
+		reverse: Boolean
+		sortKey: LocationSortKeys
+	): LocationConnection
+	localization: Localization
+	node(
+		id: ID!,
+	): Node
+	nodes(
+		ids: [ID!]!,
+	): Node
+	publicApiVersions: ApiVersion
+	customer(customerAccessToken: String!): Customer
+	metaobject(
+		handle: MetaobjectHandleInput
+		id: ID
+	): Metaobject
+	metaobjects(
+		after: String
+		before: String
+		first: Int
+		last: Int
+		reverse: Boolean
+		sortKey: String
+		type: String
+	): MetaobjectConnection
+	predictiveSearch(
+		limit: Int
+		limitScope: PredictiveSearchLimitScope
+		query: String!
+		searchableFields: [SearchableField!]
+		types: [PredictiveSearchType!]
+		unavailableProducts: SearchUnavailableProductsType
+	): PredictiveSearchResult
+	search(
+		after: String
+		before: String
+		first: Int
+		last: Int
+		prefix: SearchPrefixQueryType
+		productFilters: [ProductFilter!]
+		query: String!
+		reverse: Boolean
+		sortKey: SearchSortKeys
+		types: [SearchType!]
+		unavailableProducts: SearchUnavailableProductsType
+	): SearchResultItemConnection
+	collection(
+		handle: String
+		id: ID
+	): Collection
+	collectionByHandle(
+		handle: String!
+	): Collection
+	collections(
+		after: String
+		before: String
+		first: Int
+		last: Int
+		query: String
+		reverse: Boolean
+		sortKey: CollectionSortKeys
+	): CollectionConnection
+	product(
+		handle: String
+		id: ID
+	): Product
+	productByHandle(
+		handle: String!
+	): Product
+	productRecommendations(
+		intent: ProductRecommendationIntent
+		productId: ID!
+	): Product
+	products(
+		after: String
+		before: String
+		first: Int
+		last: Int
+		query: String
+		reverse: Boolean
+		sortKey: ProductSortKeys
+	): ProductConnection
+	productTags(
+		first: Int!
+	): StringConnection
+	productTypes(
+		first: Int!
+	): StringConnection
+}

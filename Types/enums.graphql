@@ -250,6 +250,17 @@ enum PaymentTokenType {
 	STRIPE_VAULT_TOKEN
 	VAULT
 }
+enum PredictiveSearchLimitScope {
+	ALL
+	EACH
+}
+enum PredictiveSearchType {
+	ARTICLE
+	COLLECTION
+	PAGE
+	PRODUCT
+	QUERY
+}
 enum ProductCollectionSortKeys {
 	BEST_SELLING
 	COLLECTION_DEFAULT
@@ -292,6 +303,35 @@ enum ProductVariantSortKeys {
 	RELEVANCE
 	SKU
 	TITLE
+}
+enum SearchableField {
+	AUTHOR
+	BODY
+	PRODUCT_TYPE
+	TAG
+	TITLE
+	VARIANTS_BARCODE
+	VARIANTS_SKU
+	VARIANTS_TITLE
+	VENDOR
+}
+enum SearchPrefixQueryType {
+	LAST
+	NONE
+}
+enum SearchSortKeys {
+	PRICE
+	RELEVANCE
+}
+enum SearchType {
+	ARTICLE
+	PAGE
+	PRODUCT
+}
+enum SearchUnavailableProductsType{
+	HIDE
+	LAST
+	SHOW
 }
 enum SellingPlanCheckoutChargeType {
 	PERCENTAGE

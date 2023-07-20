@@ -1,0 +1,8 @@
+type Metaobject {
+	field: MetaobjectField
+	fields: [MetaobjectField!]!
+	handle: String!
+	id: ID!
+	type: String!
+	updatedAt: DateTime!
+}

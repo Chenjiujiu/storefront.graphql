@@ -1,3 +1,265 @@
+type Collection {
+	description(truncateAt: Int): String!
+	descriptionHtml: HTML!
+	handle: String!
+	id: ID!
+	image: Image
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	onlineStoreUrl: URL
+	seo: SEO!
+	title: String!
+	trackingParameters: String
+	updatedAt: DateTime!
+	products: ProductConnection
+}
+type ExternalVideo {
+	alt: String
+	embedUrl: URL!
+	host: MediaHost!
+	id: ID!
+	mediaContentType: MediaContentType!
+	originUrl: URL!
+	presentation: MediaPresentation
+	previewImage: Image
+}
+type GenericFile {
+	alt: String
+	id: ID!
+	mimeType: String
+	originalFileSize: Int
+	previewImage: Image
+	url: URL
+}
+type MediaImage {
+	alt: String
+	id: ID!
+	image: Image
+	mediaContentType: MediaContentType!
+	presentation: MediaPresentation
+	previewImage: Image
+}
+type MediaPresentation {
+	asJson(format: MediaPresentationFormat!): JSON
+	id: ID!
+}
+type Model3d {
+	lt: String
+	id: ID!
+	mediaContentType: MediaContentType!
+	presentation: MediaPresentation
+	previewImage: Image
+	sources: [Model3dSource!]!
+}
+type Model3dSource {
+	filesize: Int!
+	format: String!
+	mimeType: String!
+	url: String!
+}
+type Product {
+	availableForSale: Boolean!
+	compareAtPriceRange: ProductPriceRange!
+	createdAt: DateTime!
+	description(truncateAt: Int): String!
+	descriptionHtml: HTML!
+	featuredImage: Image
+	handle: String!
+	id: ID!
+	isGiftCard: Boolean!
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	onlineStoreUrl: URL
+	options(first: Int): [ProductOption!]!
+	priceRange: ProductPriceRange!
+	productType: String!
+	publishedAt: DateTime!
+	requiresSellingPlan: Boolean!
+	seo: SEO!
+	tags: [String!]!
+	title: String!
+	totalInventory: Int
+	trackingParameters: String
+	updatedAt: DateTime!
+	variantBySelectedOptions(selectedOptions: [SelectedOptionInput!]!): ProductVariant
+	vendor: String!
+	collections(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): CollectionConnection
+	images(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ProductImageSortKeys
+	): ImageConnection
+	media(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ProductMediaSortKeys
+	): [Media!]!
+	sellingPlanGroups(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): SellingPlanConnection
+	variants(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		sortKey: ProductVariantSortKeys
+	): ProductVariantConnection
+}
+type ProductOption {
+	id: ID!
+	name: String!
+	values: [String!]!
+}
+type ProductPriceRange {
+	maxVariantPrice: MoneyV2!
+	minVariantPrice: MoneyV2!
+}
 type ProductVariant {
-
+	availableForSale: Boolean!
+	barcode: String
+	compareAtPrice: MoneyV2
+	currentlyNotInStock: Boolean!
+	id: ID!
+	image: Image
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	price: MoneyV2!
+	product: Product!
+	quantityAvailable: Int
+	requiresShipping: Boolean!
+	selectedOptions: [SelectedOption!]!
+	sku: String
+	title: String!
+	unitPrice: MoneyV2
+	unitPriceMeasurement: UnitPriceMeasurement
+	weight: Float
+	weightUnit: WeightUnit!
+	sellingPlanAllocations(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): SellingPlanAllocation
+	storeAvailability(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+		near: GeoCoordinateInput
+	): StoreAvailabilityConnection
+}
+type SelectedOption {
+	name: String!
+	value: String!
+}
+type SellingPlan {
+	checkoutCharge: SellingPlanCheckoutCharge!
+	description: String
+	id: ID!
+	name: String!
+	options: [SellingPlanOption!]!
+	priceAdjustments: [SellingPlanPriceAdjustment!]!
+	recurringDeliveries: Boolean!
+}
+type SellingPlanAllocation {
+	checkoutChargeAmount: MoneyV2!
+	priceAdjustments: [SellingPlanAllocationPriceAdjustment!]!
+	remainingBalanceChargeAmount: MoneyV2!
+	sellingPlan: SellingPlan!
+}
+type SellingPlanAllocationPriceAdjustment {
+	compareAtPrice: MoneyV2!
+	perDeliveryPrice: MoneyV2!
+	price: MoneyV2!
+	unitPrice: MoneyV2
+}
+type SellingPlanCheckoutCharge {
+	type: SellingPlanCheckoutChargeType!
+	value: SellingPlanCheckoutChargeValue!
+}
+type SellingPlanCheckoutChargePercentageValue {
+	percentage: Float!
+}
+type SellingPlanFixedAmountPriceAdjustment {
+	adjustmentAmount: MoneyV2!
+}
+type SellingPlanFixedPriceAdjustment {
+	price: MoneyV2!
+}
+type SellingPlanGroup {
+	appName: String
+	name: String!
+	options: [SellingPlanGroupOption!]!
+	sellingPlans(
+		first: Int
+		after: String
+		last: Int
+		before: String
+		reverse: Boolean
+	): SellingPlanConnection
+}
+type SellingPlanGroupOption {
+	name: String!
+	values: [String!]!
+}
+type SellingPlanOption {
+	name: String
+	value: String
+}
+type SellingPlanPercentagePriceAdjustment {
+	adjustmentPercentage: Int!
+}
+type SellingPlanPriceAdjustment {
+	adjustmentValue: SellingPlanPriceAdjustmentValue!
+	orderCount: Int
+}
+type UnitPriceMeasurement {
+	measuredType: UnitPriceMeasurementMeasuredType
+	quantityUnit: UnitPriceMeasurementMeasuredUnit
+	quantityValue: Float!
+	referenceUnit: UnitPriceMeasurementMeasuredUnit
+	referenceValue: Int!
+}
+type Video {
+	alt: String
+	id: ID!
+	mediaContentType: MediaContentType!
+	presentation: MediaPresentation
+	previewImage: Image
+	sources: [VideoSource!]!
+}
+type VideoSource {
+	format: String!
+	height: Int!
+	mimeType: String!
+	url: String!
+	width: Int!
 }

@@ -1,18 +1,125 @@
-type Brand {
-	colors: BrandColors!
-	coverImage: MediaImage
-	logo: MediaImage
-	shortDescription: String
-	slogan: String
-	squareLogo: MediaImage
+type Article{
+	authorV2: ArticleAuthor
+	blog: Blog!
+	content(truncateAt: Int): String!
+	contentHtml: HTML!
+	excerpt(truncateAt: Int): String
+	excerptHtml: HTML
+	handle: String!
+	id: ID!
+	image: Image
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	onlineStoreUrl: URL
+	publishedAt: DateTime!
+	seo: SEO
+	tags: [String!]!
+	title: String!
+	trackingParameters: String
+	comments: CommentsConnection
 }
-type BrandColorGroup {
-	background: Color
-	foreground: Color
+type ArticleAuthor {
+	bio: String
+	email: String!
+	firstName: String!
+	lastName: String!
+	name: String!
 }
-type BrandColors {
-	primary: [BrandColorGroup!]!
-	secondary: [BrandColorGroup!]!
+type Blog {
+	articleByHandle(handle: String!): Article
+	authors: [ArticleAuthor!]!
+	handle: String!
+	id: ID!
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	onlineStoreUrl: URL
+	seo: SEO
+	title: String!
+}
+type Comment {
+	author: CommentAuthor!
+	content(truncateAt:Int): String!
+	contentHtml: HTML!
+	id: ID!
+}
+type CommentAuthor {
+	email: String!
+	name: String!
+}
+type LocationAddress {
+	address1: String
+	address2: String
+	city: String
+	company: String
+	country: String
+	countryCode: CountryCode
+	formatted: [String!]!
+	latitude: Float
+	longitude: Float
+	phone: String
+	province: String
+	provinceCode: String
+	zip: String
+}
+type Menu {
+	handle: String!
+	id: ID!
+	items: [MenuItem!]!
+	itemsCount: Int!
+	title: String!
+}
+type MenuItem {
+	id: ID!
+	items: [MenuItem!]!
+	resource: MenuItemResource
+	resourceId: ID
+	tags: [String!]!
+	title: String!
+	type: MenuItemType!
+	url: URL
+}
+type Page {
+	body: HTML!
+	bodySummary: String!
+	createdAt: DateTime!
+	handle: String!
+	id: ID!
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	onlineStoreUrl: URL
+	seo: SEO
+	title: String!
+	trackingParameters: String
+	updatedAt: DateTime!
+}
+type Shop {
+	brand: Brand
+	description: String
+	id: ID!
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	moneyFormat: String!
+	name: String!
+	paymentSettings: PaymentSettings!
+	primaryDomain: Domain!
+	privacyPolicy: ShopPolicy
+	refundPolicy: ShopPolicy
+	shippingPolicy: ShopPolicy
+	shipsToCountries: [CountryCode!]!
+	subscriptionPolicy: ShopPolicyWithDefault
+	termsOfService: ShopPolicy
 }
 type ShopPolicy {
 	body: String!
@@ -28,21 +135,8 @@ type ShopPolicyWithDefault {
 	title: String!
 	url: URL!
 }
-
-type Shop {
-	brand: Brand
-	description: String
+type UrlRedirect {
 	id: ID!
-	metafield: Metafield
-	metafields: [Metafield]!
-	moneyFormat: String!
-	name: String!
-	paymentSettings: PaymentSettings!
-	primaryDomain: Domain!
-	privacyPolicy: ShopPolicy
-	refundPolicy: ShopPolicy
-	shippingPolicy: ShopPolicy
-	shipsToCountries: [CountryCode!]!
-	subscriptionPolicy: ShopPolicyWithDefault
-	termsOfService: ShopPolicy
+	path: String!
+	target: String!
 }

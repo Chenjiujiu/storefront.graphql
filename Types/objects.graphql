@@ -138,56 +138,52 @@ type UserError{
 }
 
 #其他的Edge汇总
+#cart
 type LinesEdge {
 	node: BaseCartLine!
 	cursor: String!
 }
-type DeliveryGroupsEdge {
-	node: DeliveryGroups!
+type CartLineEdge {
+	node: BaseCartLine!
 	cursor: String!
 }
-
-type articlesEdge {
-	cursor: String
-	node: Articles!
+#checkout
+type DiscountApplicationsEdge {
+	node: DiscountApplication!
+	cursor: String!
 }
-type blogsEdge {
-	cursor: String
-	node: Blogs!
+type LineItemEdge {
+	node: CheckoutLineItem!
+	cursor: String!
 }
-type collectionsEdge {
-	cursor: String
-	node: Collections!
+type ReferenceEdge {
+	node: MetafieldReference!
+	cursor: String!
 }
-type locationsEdge {
-	cursor: String
-	node: Locations!
+#customer
+type AddressEdge {
+	node: MailingAddress!
+	cursor: String!
 }
-type metaobjectsEdge {
-	cursor: String
-	node: Metaobjects!
+#online Store
+type CommentsEdge {
+	node: Comment!
+	cursor: String!
 }
-type pagesEdge {
+type ProductTagEdge {
 	cursor: String
-	node: Pages!
+	node: String!
 }
-type productTagsEdge {
+type ProductTypeEdge {
 	cursor: String
-	node: Producttags!
+	node: String!
 }
-type productTypesEdge {
+type SearchEdge {
 	cursor: String
-	node: Producttypes!
+	node: SearchResultItem!
 }
-type productsEdge {
+#orders
+type FulfillmentLineItemsEdge {
 	cursor: String
-	node: Products!
-}
-type searchEdge {
-	cursor: String
-	node: Search!
-}
-type urlRedirectsEdge {
-	cursor: String
-	node: Urlredirects!
+	node: FulfillmentLineItem!
 }

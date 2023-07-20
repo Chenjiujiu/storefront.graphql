@@ -1,107 +1,28 @@
-# Queries
-type Query {
-    customer(customerAccessToken: String!): Customer
-}
-
-# Mutations
-type Mutation {
-    customerAccessTokenCreate(
-        input: CustomerAccessTokenCreateInput!
-    ): CustomerAccessTokenCreatePayload
-    customerAccessTokenCreateWithMultipass(
-        multipassToken: String!
-    ): CustomerAccessTokenCreateWithMultipassPayload
-    customerAccessTokenDelete(
-        customerAccessToken: String!
-    ): CustomerAccessTokenDeletePayload
-    customerAccessTokenRenew(
-        customerAccessToken: String!
-    ): CustomerAccessTokenRenewPayload
-    customerActivate(
-        id: ID!
-        input: CustomerActivateInput!
-    ): CustomerActivatePayload
-    customerActivateByUrl(
-        activationUrl: URL!
-        password: String!
-    ): CustomerActivateByUrlPayload
-    customerAddressCreate(
-        address: MailingAddressInput!
-        customerAccessToken: String!
-    ): CustomerAddressCreatePayload
-    customerAddressDelete(
-        customerAccessToken: String!
-        id: ID!
-    ): CustomerAddressDeletePayload
-    customerAddressUpdate(
-        address: MailingAddressInput!
-        customerAccessToken: String!
-        id: ID!
-    ): CustomerAddressUpdatePayload
-    customerCreate(
-        input: CustomerCreateInput!
-    ): CustomerCreatePayload
-    customerDefaultAddressUpdate(
-        addressId: ID!
-        customerAccessToken: String!
-    ): CustomerDefaultAddressUpdatePayload
-    customerRecover(
-        email: String!
-    ): CustomerRecoverPayload
-    customerReset(
-        id: ID!
-        input: CustomerResetInput!
-    ): CustomerResetPayload
-    customerResetByUrl(
-        password: String!
-        resetUrl: URL!
-    ): CustomerResetByUrlPayload
-    customerUpdate(
-        customer: CustomerUpdateInput!
-        customerAccessToken: String!
-    ): CustomerUpdatePayload
-}
-
 # Objects
 type Customer {
-    acceptsMarketing: Boolean!
-    createdAt: DateTime!
-    defaultAddress: MailingAddress
-    displayName: String!
-    email: String
-    firstName: String
-    id: ID!
-    lastIncompleteCheckout: Checkout
-    lastName: String
-    metafield: Metafield
-    metafields: [Metafield]!
-    numberOfOrders: UnsignedInt64!
-    phone: String
-    tags: [String!]!
-    updatedAt: DateTime!
-    addresses: AddressesConnection
-    orders: OrdersConnection
+	acceptsMarketing: Boolean!
+	createdAt: DateTime!
+	defaultAddress: MailingAddress
+	displayName: String!
+	email: String
+	firstName: String
+	id: ID!
+	lastIncompleteCheckout: Checkout
+	lastName: String
+	metafield(
+		namespace: String!
+		key: String!
+	): Metafield
+	metafields(identifiers: [HasMetafieldsIdentifier!]!): [Metafield]!
+	numberOfOrders: UnsignedInt64!
+	phone: String
+	tags: [String!]!
+	updatedAt: DateTime!
+	addresses: MailingAddressConnection
+	orders: OrderConnection
 }
 
 type CustomerAccessToken {
-    accessToken: String!
-    expiresAt: DateTime!
-}
-
-# Connections
-type AddressesEdge {
-    node: MailingAddress!
-    cursor: String!
-}
-type AddressesConnection {
-    edges: [AddressesEdge!]!
-    pageInfo: PageInfo!
-}
-type OrdersEdge {
-    node: Order!
-    cursor: String!
-}
-type OrdersConnection {
-    edges: [OrdersEdge!]!
-    pageInfo: PageInfo!
+	accessToken: String!
+	expiresAt: DateTime!
 }
